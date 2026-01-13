@@ -1,0 +1,129 @@
+
+<div class="order-container">
+
+  <div class="pizza-card" *ngFor="let pizza of pizzas">
+
+    <!-- LEFT SIDE -->
+    <div class="left-content">
+        <h3 class="pizza-name">{{ pizza.name | titlecase}}</h3>
+        <div class="food-indicator"
+          [ngClass]="pizza.type === 'veg' ? 'veg' : 'nonveg'">
+        </div>
+
+        <span class="price">{{ pizza.price | currency : 'INR' }}</span>
+        
+      </div>
+
+      <div class="center-content">
+        <p class="pizza-desc">
+          {{ pizza.description }}
+        </p>
+
+        <p class="label">
+        Ingredients :
+        <span class="text">
+            <span *ngFor="let ing of pizza.ingredients; let i=index">
+                {{ ing.iname }}
+                <span *ngIf="i < pizza.ingredients.length - 1">,</span>
+            </span>
+        </span>
+      </p>
+
+      <p class="label">
+        Toppings :
+        <span class="text">
+          <span *ngFor="let top of pizza.topping; let i=index">
+                {{ top.tname }}
+                <span *ngIf="i < pizza.ingredients.length - 1">,</span>
+            </span>
+        </span>
+      </p>
+
+      </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right-content">
+
+      <img
+        [src]="pizza.image"
+        alt="Pizza"
+        class="pizza-image"
+      />
+
+      <!-- UI only -->
+      <button class="btn" [ngClass]="isInCart(pizza.id) ? 'remove-btn' : 'add-btn'" (click)="toggleCart(pizza)">
+        {{ isInCart(pizza.id) ? 'Remove' : 'Add to Cart' }}
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- 
+<div class="order-container">
+
+  <div class="pizza-card" *ngFor="let pizza of pizzas">
+    <div class="left-content">
+
+      <div class="title-row">
+        <h3 class="pizza-name">{{ pizza.name }}</h3>
+        <p class="pizza-desc">
+          {{ pizza.description }}
+        </p>
+      </div>
+
+      <p class="label">
+        Ingredients :
+        <span class="text">
+            <span *ngFor="let ing of pizza.ingredients; let i=index">
+                {{ ing.iname }}
+                <span *ngIf="i < pizza.ingredients.length - 1">,</span>
+            </span>
+        </span>
+      </p>
+
+      <div class="meta-row">
+        <span
+          class="food-indicator"
+          [ngClass]="pizza.type === 'veg' ? 'veg' : 'nonveg'">
+        </span>
+
+        <span class="price">{{ pizza.price | currency : 'INR' }}</span>
+      </div>
+
+      <p class="label">
+        Toppings :
+        <span class="text">
+          <span *ngFor="let top of pizza.topping; let i=index">
+                {{ top.tname }}
+                <span *ngIf="i < pizza.ingredients.length - 1">,</span>
+            </span>
+        </span>
+      </p>
+
+    </div>
+    <div class="right-content">
+
+      <img
+        [src]="pizza.image"
+        alt="Pizza"
+        class="pizza-image"
+      />
+      <button class="btn add-btn">
+        Add to Cart
+      </button>
+
+
+    </div>
+
+  </div>
+
+</div> --> 

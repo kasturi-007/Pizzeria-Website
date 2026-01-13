@@ -1,0 +1,93 @@
+
+/* Page layout */
+.order-container {
+  width: 90%;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+/* Card */
+.pizza-card {
+  display: flex;
+  justify-content: center;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* LEFT CONTENT */
+
+
+.pizza-name {
+  font-size: 20px;
+  font-weight: bold;
+  min-width: 120px;
+}
+
+.center-content{
+    font-size: 18px;
+}
+
+.label {
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.text {
+  font-weight: normal;
+}
+/* Veg / Non-veg indicator */
+.food-indicator {
+  width: 20px;
+  height: 20px;
+  margin: 8px;
+}
+
+.veg {
+  background-color: green;
+}
+
+.nonveg {
+  background-color: red;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* RIGHT CONTENT */
+.right-content {
+  width: 25%;
+  text-align: center;
+}
+
+.pizza-image {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+/* Buttons */
+.btn {
+  padding: 8px 18px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.add-btn {
+  background-color: #f4b400;
+  color: #000;
+}
+
+.remove-btn {
+  background-color: #d9534f;
+  color: #fff;
+}

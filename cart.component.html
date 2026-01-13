@@ -1,0 +1,68 @@
+
+<div class="cart-container">
+<!-- LEFT PANEL -->
+ <div class="cart-left">
+    <h2>My Cart</h2>
+    <div class="cart-item" *ngIf="cartService.isFreeBaseNeeded()">
+        <img src="https://www.shutterstock.com/shutterstock/photos/2675482019/display_1500/stock-photo-raw-pizza-dough-making-pizza-base-tasty-snack-fresh-delicious-gourmet-food-background-on-the-table-2675482019.jpg" alt="pizza-image">
+        <div class="details">
+            <h4>Free Pizza Base</h4>
+            <p>₹0.00</p>
+        </div>
+         <div class="qty-control">
+            <button disabled>-</button><span>1</span><button disabled>+</button>
+        </div>
+        <div class="price">₹0.00</div>
+    </div>
+
+   <div class="cart-item" *ngFor="let item of cartService.getCartItems()">
+    <img [src]="item.image" alt="pizza-image">
+    <div class="food-indicator"
+          [ngClass]="item.type === 'veg' ? 'veg' : 'nonveg'">
+        </div>
+     <div class="details">
+        <h4>{{ item.name | titlecase}}</h4>
+        <p>{{ item.price | currency : 'INR'}}</p>
+    </div>
+     <div class="qty-control">
+        <button (click)="cartService.decreaseQty(item.id)">-</button>
+         <span>{{ item.quantity }}</span>
+         <button (click)="cartService.increaseQty(item.id)">+</button>
+        </div>
+         <div class="price">
+            {{ item.price * item.quantity | currency : 'INR'}}
+        </div>
+         <button class="delete" (click)="deleteItem(item.id)">🗑
+         </button>
+    </div>
+
+    <div class="subtotal">Sub Total : {{ cartService.getPizzaTotal() | currency : 'INR'}} </div>
+ </div>
+<!-- RIGHT PANEL -->
+ <div class="cart-right">
+     <h3>The total amount of</h3>
+ <div class="row">
+     <span>Pizza</span>
+     <span>{{ cartService.getPizzaTotal() | currency : 'INR'}}</span>
+    </div>
+ <div class="row" (click)="toggleIngredients()">
+    <span>Ingredients</span>
+    <span>{{ cartService.getIngredientsTotal() | currency : 'INR'}}</span>
+    <span>{{ showIngredients ? '▲' : '▼'}}</span>
+    <div class="ingredient-dropdown" *ngIf="showIngredients">
+        <div class="ingredient-item" *ngFor="let ing of cartService.getIngredients()">
+            <span>{{ing.tname}}</span>
+            <span>{{ing.price | currency:'INR'}}</span>
+        </div>
+    </div>
+</div>
+ <hr>
+ <div class="total">
+    <strong>Total : {{ cartService.getGrandTotal() | currency : 'INR'}}</strong>
+ </div>
+ <div class="actions">
+     <button class="pay" (click)="payment()">Pay</button>
+      <button class="clear" (click)="cartService.clearCart()">Clear</button>
+    </div>
+</div>
+</div>
